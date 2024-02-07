@@ -1,4 +1,8 @@
 .form_contianer {
+  .aster {
+    color: red;
+  }
+
   h5 {
     text-align: center;
     font-weight: 400;
@@ -23,7 +27,7 @@
       align-self: flex-start;
       width: 99%;
       padding: 0.5rem;
-      color: #ccc;
+      color: black;
     }
 
     select {
