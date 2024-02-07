@@ -40,7 +40,7 @@ const Form = () => {
         address: "Razorpay Corporate office",
       },
       theme: {
-        color: "#3399cc",
+        color: "#770909",
       },
     };
     var pay = new window.Razorpay(options);
@@ -97,7 +97,11 @@ const Form = () => {
             <option>Masteres</option>
             <option>Other</option>
           </select>
-          <button onClick={handlePayment}>Apply Now</button>
+          {formData.mobileNumber != "" ? (
+            <button onClick={handlePayment}>Apply Now</button>
+          ) : (
+            <button disabled>Fill the form</button>
+          )}
         </form>
       </section>
     </div>
