@@ -1,0 +1,86 @@
+.hero_section {
+  color: white;
+  text-align: center;
+
+  .head_section {
+    min-height: 60vh;
+    background-color: var(--primary-color);
+
+    img {
+      max-inline-size: 10%;
+      background-color: white;
+      margin: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+
+      span {
+        color: var(--fallback-color);
+      }
+    }
+
+    .quote {
+      font-size: 1.8rem;
+    }
+
+    .details {
+      padding: 1rem;
+      font-size: 1rem;
+      animation: blink 1s infinite;
+
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+
+        50% {
+          opacity: 0;
+        }
+
+        100% {
+          opacity: 1;
+        }
+      }
+
+    }
+  }
+
+  p {
+    font-size: 2rem;
+
+    span {
+      color: var(--fallback-color);
+    }
+  }
+
+  .hero_details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    p {
+      font-weight: 200;
+      font-size: 0.9rem;
+      padding: 1rem;
+    }
+
+    .date_button {
+      padding: 0.6rem;
+      background-color: var(--secondary-color);
+      color: black;
+      width: 50%;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      h5 {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
