@@ -62,7 +62,7 @@ const Form = () => {
     var options = {
       key: import.meta.env.VITE_RAZORPAY_API_KEY,
       key_secret: import.meta.env.VITE_RAZORPAY_SECRETKEY,
-      amount: 100,
+      amount: 100000,
       currency: "INR",
       name: "ADACODE_SOLUTIONS",
       description: "15 Days Master Class Program",
