@@ -15,15 +15,8 @@ Font.register({
   src: "https://fonts.gstatic.com/s/roboto/v27/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2",
 });
 
-// Sample data for the invoice
-const invoiceData = {
-  invoiceNumber: "2kjeki33n3b3i2",
-  customerName: "Kevin Roan",
-  items: [{ name: "15 Days MasterClass", quantity: 1, price: 1000 }],
-};
-
 // Component to render the invoice
-const Invoice = () => {
+const Invoice = ({ invoiceData }) => {
   return (
     <Document>
       <Page style={styles.page}>
@@ -144,10 +137,20 @@ const styles = StyleSheet.create({
 });
 
 // Component to trigger PDF download
-const InvoicePDF = () => {
+const InvoicePDF = ({ paymentId, userName }) => {
+  // Sample data for the invoice
+  const invoiceData = {
+    invoiceNumber: paymentId,
+    customerName: userName,
+    items: [{ name: "15 Days MasterClass", quantity: 1, price: 1000 }],
+  };
+
   return (
-    <PDFDownloadLink document={<Invoice />} fileName="invoice.pdf">
-      {({ loading }) => (loading ? "Loading document..." : "Download PDF")}
+    <PDFDownloadLink
+      document={<Invoice invoiceData={invoiceData} />}
+      fileName="invoice.pdf"
+    >
+      {({ loading }) => (loading ? "Loading document..." : "Download Invoice")}
     </PDFDownloadLink>
   );
 };

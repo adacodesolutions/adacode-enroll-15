@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import InvoicePDF from "../components/Invoice";
 import "./Form.scss";
+import { addDoc, collection } from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
+import { db } from "../App";
 
 const Form = () => {
+  const [paymentId, setPaymentId] = useState();
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     fullName: "",
     mobileNumber: "",
@@ -16,20 +22,54 @@ const Form = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted with data:", formData);
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setErrors({
+        ...errors,
+        email: "Please enter a valid email address",
+      });
+      return;
+    }
+    // Validate phone number
+    const phoneRegex = /^[6-9]\d{9}$/;
+    if (!phoneRegex.test(formData.mobileNumber)) {
+      setErrors({
+        ...errors,
+        mobileNumber: "Please enter a 10-digit mobile number",
+      });
+      return;
+    }
+    handlePayment();
+  };
+
+  const handleUserdata = async () => {
+    try {
+      const docRef = await addDoc(collection(db, "userdata"), {
+        createdAt: serverTimestamp(),
+        username: formData.fullName,
+        phonenumber: formData.mobileNumber,
+        email: formData.email,
+        qualification: formData.qualification,
+      });
+      console.log("Data Successfully submitted", docRef.id);
+    } catch (error) {
+      console.error("Error saving Data", error);
+    }
   };
   const handlePayment = () => {
     var options = {
-      key: "rzp_test_smoqKU73vlbB3h",
-      key_secret: "TBZEpNqqYgQoRv3fAXPMUSY5",
-      amount: 100000,
+      key: import.meta.env.VITE_RAZORPAY_API_KEY,
+      key_secret: import.meta.env.VITE_RAZORPAY_SECRETKEY,
+      amount: 100,
       currency: "INR",
       name: "ADACODE_SOLUTIONS",
       description: "15 Days Master Class Program",
       handler: function (response) {
-        alert(response.razorpay_payment_id);
+        alert("Payment Successfull", response.razorpay_payment_id);
+        setPaymentId(response.razorpay_payment_id);
+        handleUserdata();
       },
       prefill: {
         name: formData.fullName,
@@ -74,6 +114,9 @@ const Form = () => {
             value={formData.mobileNumber}
             required
           />
+          {errors.mobileNumber && (
+            <div className="error">{errors.mobileNumber}</div>
+          )}
           <label>
             Email <span className="aster">*</span>
           </label>
@@ -85,6 +128,7 @@ const Form = () => {
             value={formData.email}
             required
           />
+          {errors.email && <div className="error">{errors.email}</div>}
           <label>Qualification</label>
           <select
             name="qualification"
@@ -98,9 +142,15 @@ const Form = () => {
             <option>Other</option>
           </select>
           {formData.mobileNumber != "" ? (
-            <button onClick={handlePayment}>Apply Now</button>
+            <button onClick={handleSubmit}>Apply Now</button>
           ) : (
-            <button disabled>Fill the form</button>
+            <button disabled>Fill the form properly</button>
+          )}
+          {paymentId && (
+            <InvoicePDF
+              paymentId={formData.mobileNumber}
+              userName={formData.fullName}
+            />
           )}
         </form>
       </section>
