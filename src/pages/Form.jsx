@@ -136,9 +136,9 @@ const Form = () => {
             value={formData.qualification}
           >
             <option>Plus Two</option>
-            <option>ITI or Deploma</option>
+            <option>ITI or Diploma</option>
             <option>Graduate</option>
-            <option>Masteres</option>
+            <option>Masters</option>
             <option>Other</option>
           </select>
           {formData.mobileNumber != "" ? (
