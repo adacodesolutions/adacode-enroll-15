@@ -13,6 +13,7 @@ const Form = () => {
     mobileNumber: "",
     email: "",
     qualification: "Other",
+    course: "",
   });
 
   const handleInputChange = (e) => {
@@ -52,6 +53,7 @@ const Form = () => {
         phonenumber: formData.mobileNumber,
         email: formData.email,
         qualification: formData.qualification,
+        course: formData.course,
       });
       console.log("Data Successfully submitted", docRef.id);
     } catch (error) {
@@ -141,6 +143,23 @@ const Form = () => {
             <option>Masters</option>
             <option>Other</option>
           </select>
+          <label>Select Course</label>
+          <select
+            name="course"
+            onChange={handleInputChange}
+            value={formData.course}
+          >
+            <option>Embedded Systems and IoT</option>
+            <option>MERN Stack</option>
+            <option>Java Full Stack</option>
+            <option>Python Full Stack</option>
+            <option>Data Science</option>
+            <option>Cloud Computing</option>
+            <option>Flutter</option>
+            <option>React Native</option>
+            <option>Robotics</option>
+          </select>
+
           {formData.mobileNumber != "" ? (
             <button onClick={handleSubmit}>Apply Now</button>
           ) : (
