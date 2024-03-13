@@ -3,7 +3,6 @@
   text-align: center;
 
 
-
   .head_section {
     min-height: 60vh;
     background-color: var(--primary-color);
@@ -69,20 +68,35 @@
       padding: 1rem;
     }
 
-    .date_button {
-      padding: 0.6rem;
-      background-color: var(--secondary-color);
-      color: black;
-      width: 50%;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  }
+}
 
-      h5 {
-        font-size: 1rem;
-        font-weight: 500;
-      }
+.blink_button {
+  color: black;
+  padding: 1rem;
+  border: 1px solid white;
+  background-color: var(--secondary-color);
+  width: 30rem;
+  border-radius: 10px;
+}
+
+.blink_container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  animation: blink 1s infinite;
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
     }
   }
 }

@@ -10,7 +10,11 @@ const Home = () => {
           Ada<span>code </span>Solu<span>tions</span>
         </h1>
         <p className="quote">Excellence for tomorrows Innovators</p>
-        <p className="date_button">15 Days Master Class for just 1000RS..!</p>
+        <div className="blink_container">
+          <div className="blink_button">
+            <h5>15 Days Master Class for just 1000RS..!</h5>
+          </div>
+        </div>
         <div className="hero_details">
           <p>3rd Floor, 4 Wing Avenue, Panniyankara</p>
         </div>
