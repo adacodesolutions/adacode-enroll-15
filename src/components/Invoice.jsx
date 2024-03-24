@@ -142,7 +142,7 @@ const InvoicePDF = ({ paymentId, userName }) => {
   const invoiceData = {
     invoiceNumber: paymentId,
     customerName: userName,
-    items: [{ name: "15 Days MasterClass", quantity: 1, price: 1000 }],
+    items: [{ name: "15 Days MasterClass", quantity: 1, price: 999 }],
   };
 
   return (
