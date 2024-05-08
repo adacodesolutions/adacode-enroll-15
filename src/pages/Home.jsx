@@ -12,7 +12,7 @@ const Home = () => {
         <p className="quote">Excellence for tomorrows Innovators</p>
         <div className="blink_container">
           <div className="blink_button">
-            <h5>15 Days Master Class for just 999Rs..!</h5>
+            <h5>Master Class for just 999 Rs..!</h5>
           </div>
         </div>
         <div className="hero_details">

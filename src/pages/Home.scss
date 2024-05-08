@@ -8,8 +8,7 @@
     background-color: var(--primary-color);
 
     img {
-      max-inline-size: 10%;
-      background-color: white;
+      max-inline-size: 12%;
       margin: 1rem;
     }
 
@@ -84,7 +83,7 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  animation: blink 1s infinite;
+  animation: blink 1.3s infinite;
 
   @keyframes blink {
     0% {

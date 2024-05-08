@@ -158,6 +158,8 @@ const Form = () => {
             <option>Flutter</option>
             <option>React Native</option>
             <option>Robotics</option>
+            <option>Ethical Hacking</option>
+            <option>Cyber Security</option>
           </select>
 
           {formData.mobileNumber != "" ? (
